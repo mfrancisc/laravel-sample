@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-class WelcomeController extends Controller {
+class WelcomeController extends Controller
+{
 
-  public function index() {
+  public function index()
+  {
 
-   return view('welcome'); 
-  
+   return view('welcome');
+
   }
   /**
     * contact me form
     * @return contact view
    */
-  public function contact() {
+  public function contact()
+  {
 
-    return view('pages.contact'); 
+    return view('pages.contact');
   }
 
 }
