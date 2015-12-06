@@ -1,12 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
-use Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
 use Carbon\Carbon;
-use App\Http\Requests\CreateArticleRequest;
+use App\Http\Requests\ArticleRequest;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ArticlesController extends Controller
 {
@@ -39,7 +39,7 @@ class ArticlesController extends Controller
 
   }
 
-  public function store(CreateArticleRequest $request)
+  public function store(ArticleRequest $request)
   {
 
     Article::create($request->all());
@@ -48,5 +48,23 @@ class ArticlesController extends Controller
 
   }
 
+  public function edit($articleId)
+  {
+
+    $article = Article::findOrFail($articleId);
+    return view('articles.edit', compact('article'));
+
+  }
+
+  public function update($articleId, ArticleRequest $request)
+  {
+
+    $article = Article::findOrFail($articleId);
+
+    $article->update($request->all());
+
+    return redirect('articles');
+
+  }
 
 }
