@@ -9,7 +9,7 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+ */
 
 Route::get('/', 'WelcomeController@index'); 
 
@@ -21,3 +21,9 @@ Route::controllers ([
   'auth' => 'Auth\AuthController',
   'password' => 'Auth\PasswordController',
 ]);
+
+Route::get('foo', ['middleware' => 'manager', function() {
+
+  return 'page only for manager';
+
+}]);
