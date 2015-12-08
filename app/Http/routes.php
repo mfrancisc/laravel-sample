@@ -17,3 +17,7 @@ Route::get('/contact', 'WelcomeController@contact');
 
 Route::resource('articles', 'ArticlesController');
 
+Route::controllers ([
+  'auth' => 'Auth\AuthController',
+  'password' => 'Auth\PasswordController',
+]);

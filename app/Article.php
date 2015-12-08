@@ -11,6 +11,7 @@ class Article extends Model
     'title',
     'body',
     'published_at',
+    'user_id',//temporary
   ];
 
   protected $dates = [
@@ -31,6 +32,17 @@ class Article extends Model
   {
     $publishedAt = Carbon::parse($date);
     $this->attributes['published_at']= $publishedAt;
+  }
+
+  /**
+   * An article is owned by a user.
+   *
+   */
+  public function user()
+  {
+
+    return $this->belongsTo('App\User'); 
+
   }
 
 }

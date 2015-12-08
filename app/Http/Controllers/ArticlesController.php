@@ -14,7 +14,6 @@ class ArticlesController extends Controller
   public function index ()
   {
 
-
     // order by latest publihed comes first in the list
     $articles = Article::latest('published_at')
       ->published()
@@ -41,8 +40,9 @@ class ArticlesController extends Controller
 
   public function store(ArticleRequest $request)
   {
+    $article = new Article($request->all());
 
-    Article::create($request->all());
+    \Auth::user()->articles()->save($article);
 
     return redirect('articles');
 
