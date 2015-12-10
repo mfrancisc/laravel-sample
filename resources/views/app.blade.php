@@ -13,7 +13,7 @@
 <body>
 <div class="container">
 
-  @include('partials.flash')
+  @include('flash::message')
 
   @yield('content')
 
@@ -25,7 +25,9 @@
 
 <script type="text/javascript" charset="utf-8">
 
- $('div.alert').not('.alert-important').delay(3000).slideUp(300); 
+$('#flash-overlay-modal').modal();
+
+ // $('div.alert').not('.alert-important').delay(3000).slideUp(300); 
 
 </script>
 
