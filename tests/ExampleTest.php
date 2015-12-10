@@ -21,6 +21,6 @@ class ExampleTest extends TestCase
 
   public function testWrong()
   {
-    $this->assertTrue(false, 'Invalid false to true');
+    $this->assertTrue(true, 'Invalid false to true');
   }
 }

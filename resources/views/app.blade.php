@@ -6,6 +6,7 @@
 
   <title>Document</title>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" title="" type="" />
+ <link rel="stylesheet" href="{{ elixir('css/all.css')}}" title="" type="" /> 
   
 </head>
 
