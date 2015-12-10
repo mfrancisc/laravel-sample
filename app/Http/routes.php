@@ -27,3 +27,4 @@ Route::get('foo', ['middleware' => 'manager', function() {
   return 'page only for manager';
 
 }]);
+

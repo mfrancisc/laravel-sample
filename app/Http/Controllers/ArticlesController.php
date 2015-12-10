@@ -27,11 +27,8 @@ class ArticlesController extends Controller
 
   }
 
-  public function show($articleId)
+  public function show(Article $article)
   {
-
-    $article = Article::findOrFail($articleId);
-
     return view('articles.show', compact('article'));
   }
 
@@ -52,18 +49,14 @@ class ArticlesController extends Controller
 
   }
 
-  public function edit($articleId)
+  public function edit(Article $article)
   {
-
-    $article = Article::findOrFail($articleId);
     return view('articles.edit', compact('article'));
 
   }
 
-  public function update($articleId, ArticleRequest $request)
+  public function update(Article $article, ArticleRequest $request)
   {
-
-    $article = Article::findOrFail($articleId);
 
     $article->update($request->all());
 
