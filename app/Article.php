@@ -56,4 +56,17 @@ class Article extends Model
 
   }
 
+  /**
+   * Get a list of tag ids associated with the current article
+   *
+   * @return array
+   *
+   */
+  public function getTagListAttribute()
+  {
+
+    return $this->tags->lists('id')->all(); 
+
+  }
+
 }

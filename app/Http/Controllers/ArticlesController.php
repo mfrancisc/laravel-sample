@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\Tag;
 use Carbon\Carbon;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
@@ -35,14 +36,16 @@ class ArticlesController extends Controller
   public function create()
   {
 
-    return view('articles.create');
+    $tags = Tag::lists('name', 'id');
+
+    return view('articles.create', compact('tags'));
 
   }
 
   public function store(ArticleRequest $request)
   {
 
-    \Auth::user()->articles()->create($request->all());
+    $this->createArticle($request);
 
     flash()->overlay('Your article has been created', 'Good job');
 
@@ -51,7 +54,9 @@ class ArticlesController extends Controller
 
   public function edit(Article $article)
   {
-    return view('articles.edit', compact('article'));
+
+    $tags = Tag::lists('name', 'id');
+    return view('articles.edit', compact('article', 'tags'));
 
   }
 
@@ -60,8 +65,25 @@ class ArticlesController extends Controller
 
     $article->update($request->all());
 
+    //update articles tags, deletes old tags and inserts new ones selected
+    $this->syncTags( $article, $request->input('tag_list'));
+
     return redirect('articles');
 
+  }
+
+  private function syncTags( Article $article, array $tags)
+  {
+    $article->tags()->sync($tags);
+  }
+
+  private function createArticle($request)
+  {
+    $article = \Auth::user()->articles()->create($request->all());
+    //update the created article with associated tags from the form
+    $this->syncTags( $article, $request->input('tag_list'));
+
+    return $article;
   }
 
 }
