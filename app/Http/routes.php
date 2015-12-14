@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
  */
+Route::get('foo', 'FooController@foo');
 
 Route::get('/', 'WelcomeController@index'); 
 
@@ -22,7 +23,7 @@ Route::controllers ([
   'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('foo', ['middleware' => 'manager', function() {
+Route::get('bar', ['middleware' => 'manager', function() {
 
   return 'page only for manager';
 
